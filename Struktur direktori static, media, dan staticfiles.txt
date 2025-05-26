@@ -1,0 +1,21 @@
+
+# Untuk menjaga agar folder tetap ada di repository, tambahkan file .gitkeep di setiap folder berikut:
+
+media/
+└── peserta/
+    └── .gitkeep
+
+static/
+├── css/
+│   └── .gitkeep
+├── js/
+│   └── .gitkeep
+└── images/
+    └── .gitkeep
+
+staticfiles/
+└── .gitkeep
+
+# Catatan:
+# - File .gitkeep adalah file kosong, hanya untuk menjaga folder tetap ada di git.
+# - Folder staticfiles akan diisi otomatis oleh Django saat menjalankan collectstatic.

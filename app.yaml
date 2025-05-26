@@ -1,0 +1,29 @@
+runtime: python39
+
+env_variables:
+  DJANGO_SETTINGS_MODULE: 'your_project.settings'
+  SECRET_KEY: 'your-secret-key'  # Use Secret Manager in production
+  DEBUG: 'False'
+  ALLOWED_HOSTS: '.appspot.com,your-domain.com'
+  DATABASE_URL: 'postgresql://user:password@/dbname?host=/cloudsql/instance-connection-name'
+
+handlers:
+- url: /static
+  static_dir: static/
+  secure: always
+
+- url: /.*
+  script: auto
+  secure: always
+
+entrypoint: gunicorn -b :$PORT your_project.wsgi
+
+instance_class: F2
+
+automatic_scaling:
+  min_instances: 1
+  max_instances: 10
+  target_cpu_utilization: 0.65
+
+beta_settings:
+  cloud_sql_instances: your-project:region:instance-name

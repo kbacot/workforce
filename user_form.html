@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}User Form{% endblock %}
+{% block content %}
+<h2>{{ view.object.pk|yesno:"Edit User,Add User" }}</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Save</button>
+</form>
+<a href="{% url 'user_list' %}">Back to List</a>
+{% endblock %}
